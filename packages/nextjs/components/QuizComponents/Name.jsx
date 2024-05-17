@@ -43,9 +43,10 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
       </div>
       <div>Choose from the options below to name your character, or feel free to type in your own name.</div>
 
-      <div>
-        {myEnvironment === "Elf"
-          ? elfFirstNames.map((firstName, index) => (
+      {myEnvironment === "Elf" ? (
+        <>
+          <div>
+            {elfFirstNames.map((firstName, index) => (
               <div key={index}>
                 <div>
                   <input
@@ -66,13 +67,10 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                   </label>
                 </div>
               </div>
-            ))
-          : null}
-      </div>
-
-      <div>
-        {myEnvironment === "Elf"
-          ? elfSurnames.map((surname, index) => (
+            ))}
+          </div>
+          <div>
+            {elfSurnames.map((surname, index) => (
               <div key={index}>
                 <div>
                   <input
@@ -93,9 +91,170 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                   </label>
                 </div>
               </div>
-            ))
-          : null}
-      </div>
+            ))}
+          </div>
+        </>
+      ) : null}
+
+      {myEnvironment === "Dwarf" ? (
+        <>
+          <div>
+            {dwarfFirstNames.map((firstName, index) => (
+              <div key={index}>
+                <div>
+                  <input
+                    type="radio"
+                    value={firstName}
+                    id={`dwarf-first-name-${index}`}
+                    checked={nameObject.firstName === firstName}
+                    onChange={() => handleNameChange(firstName, "firstName")}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor={`dwarf-first-name-${index}`}
+                    className={`cursor-pointer p-2 rounded-md ${
+                      nameObject.firstName === firstName ? "border-4 border-solid border-ceptor p-2" : ""
+                    }`}
+                  >
+                    {firstName}
+                  </label>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div>
+            {dwarfSurnames.map((surname, index) => (
+              <div key={index}>
+                <div>
+                  <input
+                    type="radio"
+                    value={surname}
+                    id={`dwarf-surname-${index}`}
+                    checked={nameObject.surname === surname}
+                    onChange={() => handleNameChange(surname, "surname")}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor={`dwarf-surname-${index}`}
+                    className={`cursor-pointer p-2 rounded-md ${
+                      nameObject.surname === surname ? "border-4 border-solid border-ceptor p-2" : ""
+                    }`}
+                  >
+                    {surname}
+                  </label>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : null}
+
+{myEnvironment === "Human" ? (
+        <>
+          <div>
+            {humanFirstNames.map((firstName, index) => (
+              <div key={index}>
+                <div>
+                  <input
+                    type="radio"
+                    value={firstName}
+                    id={`human-first-name-${index}`}
+                    checked={nameObject.firstName === firstName}
+                    onChange={() => handleNameChange(firstName, "firstName")}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor={`human-first-name-${index}`}
+                    className={`cursor-pointer p-2 rounded-md ${
+                      nameObject.firstName === firstName ? "border-4 border-solid border-ceptor p-2" : ""
+                    }`}
+                  >
+                    {firstName}
+                  </label>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div>
+            {humanSurnames.map((surname, index) => (
+              <div key={index}>
+                <div>
+                  <input
+                    type="radio"
+                    value={surname}
+                    id={`human-surname-${index}`}
+                    checked={nameObject.surname === surname}
+                    onChange={() => handleNameChange(surname, "surname")}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor={`human-surname-${index}`}
+                    className={`cursor-pointer p-2 rounded-md ${
+                      nameObject.surname === surname ? "border-4 border-solid border-ceptor p-2" : ""
+                    }`}
+                  >
+                    {surname}
+                  </label>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : null}
+
+{myEnvironment === "Halfling" ? (
+        <>
+          <div>
+            {halflingFirstNames.map((firstName, index) => (
+              <div key={index}>
+                <div>
+                  <input
+                    type="radio"
+                    value={firstName}
+                    id={`halfling-first-name-${index}`}
+                    checked={nameObject.firstName === firstName}
+                    onChange={() => handleNameChange(firstName, "firstName")}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor={`halfling-first-name-${index}`}
+                    className={`cursor-pointer p-2 rounded-md ${
+                      nameObject.firstName === firstName ? "border-4 border-solid border-ceptor p-2" : ""
+                    }`}
+                  >
+                    {firstName}
+                  </label>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div>
+            {halflingSurnames.map((surname, index) => (
+              <div key={index}>
+                <div>
+                  <input
+                    type="radio"
+                    value={surname}
+                    id={`halfling-surname-${index}`}
+                    checked={nameObject.surname === surname}
+                    onChange={() => handleNameChange(surname, "surname")}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor={`halfling-surname-${index}`}
+                    className={`cursor-pointer p-2 rounded-md ${
+                      nameObject.surname === surname ? "border-4 border-solid border-ceptor p-2" : ""
+                    }`}
+                  >
+                    {surname}
+                  </label>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : null}
+
     </>
   );
 }
