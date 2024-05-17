@@ -52,9 +52,9 @@ export default function EnvironmentForRace({ myEnvironment, setMyEnvironment }) 
         <div>
           <input
             type="radio"
-            value="Humans"
-            id="Humans"
-            checked={myEnvironment === "Humans"}
+            value="Human"
+            id="Human"
+            checked={myEnvironment === "Human"}
             onChange={e => {
               const selectedOption = e.target.value;
               setMyEnvironment(selectedOption);
@@ -63,9 +63,9 @@ export default function EnvironmentForRace({ myEnvironment, setMyEnvironment }) 
             className="hidden"
           />
           <label
-            htmlFor="Humans"
+            htmlFor="Human"
             className={`cursor-pointer p-2 rounded-md ${
-              myEnvironment === "Humans" ? "border-4 border-solid border-ceptor p-2" : ""
+              myEnvironment === "Human" ? "border-4 border-solid border-ceptor p-2" : ""
             }`}
           >
             Cities

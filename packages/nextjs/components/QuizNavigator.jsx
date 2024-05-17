@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import EnvironmentForRace from "./QuizComponents/EnvironmentForRace";
 import JobForClass from "./QuizComponents/JobForClass";
 import MajorForBackground from "./QuizComponents/MajorForBackground";
+import Names from "./QuizComponents/Name";
 
 // import { RandomName } from "./RandomName";
 
@@ -27,12 +28,20 @@ export default function QuizNavigator({}) {
   const [myEnvironment, setMyEnvironment] = useState("");
   const [myJob, setMyJob] = useState("");
   const [myMajor, setMyMajor] = useState("");
+  const [characterName, setCharacterName] = useState("");
 
   const questionComponentMap = {
     [State.QUESTION1]: <EnvironmentForRace myEnvironment={myEnvironment} setMyEnvironment={setMyEnvironment} />,
     [State.QUESTION2]: <JobForClass myJob={myJob} setMyJob={setMyJob} />,
     [State.QUESTION3]: <MajorForBackground myMajor={myMajor} setMyMajor={setMyMajor} />,
-    // [State.QUESTION4]: <Interest interest={interest} setInterest={setInterest} />,
+    [State.QUESTION4]: (
+      <Names
+        characterName={characterName}
+        setCharacterName={setCharacterName}
+        myJob={myJob}
+        myEnvironment={myEnvironment}
+      />
+    ),
     // [State.QUESTION5]: <PartyPos partyPos={partyPos} setPartyPos={setPartyPos} />,
     // [State.QUESTION6]: <AlignmentGoodEvil myAlignment={myAlignment} setMyAlignment={setMyAlignment} />,
     // [State.QUESTION7]: (
