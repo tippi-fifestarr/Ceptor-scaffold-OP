@@ -81,6 +81,9 @@ module.exports = {
       animation: {
         "pulse-fast": "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
+      gridTemplateColumns: {
+        "2/3-1/3": "2fr 1fr",
+      },
     },
     colors: {
       ceptor: "#FFFF00",
