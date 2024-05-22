@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import EnvironmentForRace from "./QuizComponents/EnvironmentForRace";
 import JobForClass from "./QuizComponents/JobForClass";
 import MajorForBackground from "./QuizComponents/MajorForBackground";
-import Names from "./QuizComponents/Name";
+import Name from "./QuizComponents/Name";
+import CharacterPage from "./QuizComponents/CharacterPage"
 
 // import { RandomName } from "./RandomName";
 
@@ -35,14 +36,16 @@ export default function QuizNavigator({}) {
     [State.QUESTION2]: <JobForClass myJob={myJob} setMyJob={setMyJob} />,
     [State.QUESTION3]: <MajorForBackground myMajor={myMajor} setMyMajor={setMyMajor} />,
     [State.QUESTION4]: (
-      <Names
+      <Name
         characterName={characterName}
         setCharacterName={setCharacterName}
         myJob={myJob}
         myEnvironment={myEnvironment}
       />
     ),
-    // [State.QUESTION5]: <PartyPos partyPos={partyPos} setPartyPos={setPartyPos} />,
+    [State.QUESTION5]: (
+      <CharacterPage myEnvironment={myEnvironment} myJob={myJob} myMajor={myMajor} characterName={characterName} />
+    ),
     // [State.QUESTION6]: <AlignmentGoodEvil myAlignment={myAlignment} setMyAlignment={setMyAlignment} />,
     // [State.QUESTION7]: (
     //   <HumanoidOrNo humanoidOrNo={humanoidOrNo} setHumanoidOrNo={setHumanoidOrNo} setSpecies={setSpecies} />

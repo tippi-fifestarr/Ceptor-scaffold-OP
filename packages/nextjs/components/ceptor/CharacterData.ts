@@ -148,7 +148,7 @@ const defaultMage: Character = {
 const defaultCleric: Character = {
   name: "",
   race: "",
-  classInfo: "",
+  classInfo: "Cleric",
   level: 1,
   background: "",
   alignment: "",
@@ -181,7 +181,7 @@ const defaultCleric: Character = {
 const defaultThief: Character = {
   name: "",
   race: "",
-  classInfo: "",
+  classInfo: "Thief",
   level: 1,
   background: "",
   alignment: "",
