@@ -188,9 +188,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chainlink/contracts@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@chainlink/contracts@npm:1.1.0"
+"@chainlink/contracts@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@chainlink/contracts@npm:1.1.1"
   dependencies:
     "@changesets/changelog-github": ^0.4.8
     "@changesets/cli": ~2.26.2
@@ -198,8 +198,8 @@ __metadata:
     "@openzeppelin/contracts": 4.9.3
     "@openzeppelin/contracts-upgradeable": 4.9.3
     "@scroll-tech/contracts": 0.1.0
-    semver: ^7.6.0
-  checksum: 99be0045648c1fa3fffb76822bb8b4e9893077f6ad7d384aee421f465bf6d7d751b5375a66f4232d6a0a11f490c85c85bbd9f63c5744344050bb303a4859acfc
+    semver: ^7.6.2
+  checksum: e5d867ea11b04cbf6342f84d34d59fe5185ec88adc9088bc19e924273db25f7e990c7d5bc0b486e38724bdee0e238bfdaa93a03561759d2fe6dcf4ebed899d4f
   languageName: node
   linkType: hard
 
@@ -1898,7 +1898,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openzeppelin/contracts@npm:4.9.3, @openzeppelin/contracts@npm:^4.8.1":
+"@openzeppelin/contracts@npm:4.6.0":
+  version: 4.6.0
+  resolution: "@openzeppelin/contracts@npm:4.6.0"
+  checksum: 1de06211b279d7aef2bb9abbdd58eb80c71256f7e888a10855ea23bb06ef8723b22fb550d06af60247dfbd7f0f23de9821732012d7541a823339070a8442d1db
+  languageName: node
+  linkType: hard
+
+"@openzeppelin/contracts@npm:4.9.3":
   version: 4.9.3
   resolution: "@openzeppelin/contracts@npm:4.9.3"
   checksum: 4932063e733b35fa7669b9fe2053f69b062366c5c208b0c6cfa1ac451712100c78acff98120c3a4b88d94154c802be05d160d71f37e7d74cadbe150964458838
@@ -2212,14 +2219,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@se-2/hardhat@workspace:packages/hardhat"
   dependencies:
-    "@chainlink/contracts": ^1.1.0
+    "@chainlink/contracts": ^1.1.1
     "@ethersproject/abi": ^5.7.0
     "@ethersproject/providers": ^5.7.1
     "@nomicfoundation/hardhat-chai-matchers": ^2.0.3
     "@nomicfoundation/hardhat-ethers": ^3.0.5
     "@nomicfoundation/hardhat-network-helpers": ^1.0.6
     "@nomicfoundation/hardhat-verify": ^2.0.3
-    "@openzeppelin/contracts": ^4.8.1
+    "@openzeppelin/contracts": 4.6.0
     "@typechain/ethers-v5": ^10.1.0
     "@typechain/ethers-v6": ^0.5.1
     "@typechain/hardhat": ^9.1.0
@@ -12313,6 +12320,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
+    "@chainlink/contracts": ^1.1.1
+    "@openzeppelin/contracts": 4.6.0
     husky: ^8.0.1
     lint-staged: ^13.0.3
   languageName: unknown
@@ -12359,7 +12368,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.3.8, semver@npm:^7.5.3, semver@npm:^7.5.4, semver@npm:^7.6.0":
+"semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.3.8, semver@npm:^7.5.3, semver@npm:^7.5.4, semver@npm:^7.6.0, semver@npm:^7.6.2":
   version: 7.6.2
   resolution: "semver@npm:7.6.2"
   bin:

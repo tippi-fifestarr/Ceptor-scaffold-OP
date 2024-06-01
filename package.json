@@ -38,5 +38,9 @@
   "devDependencies": {
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^1.1.1",
+    "@openzeppelin/contracts": "4.6.0"
   }
 }

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
-
+// NOTE: THIS IS JUST A STARTING POINT REFERENCE FOR ME, NOT A FINAL CONTRACT
 /**
  * @title World
  * @dev World struct

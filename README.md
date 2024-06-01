@@ -15,7 +15,7 @@ Ceptor-Scaffold-OP is a fork of Scaffold-ETH2 with fantastic differences, provid
 
 # Games Contracts
 
-### [Game World Generator](BuyMeACeptor.sol)
+### [Game World Generator](./packages/hardhat/contracts/Drafts/BuyMeACeptor.sol)
 Step into the realms of creativity with our Game World Generator. This contract spawns a unique game world, sculpted by your chosen vibe and number of players. Picture a planet alive with scenarios, locations, descriptions, maps, denizens, secrets, goals, and players. Each world, distinct and thriving on its own blockchain, is birthed for 10 gameTokens. Craft your world, or join the adventure: 5 gT as a GM, 2 gT as a player.
 
 **Inside worlds:**

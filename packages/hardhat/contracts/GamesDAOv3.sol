@@ -85,8 +85,8 @@ contract GamesDAOv3 is AccessControl {
      * @dev Ensures only allowed players or gamemasters can call the modified function.
      */
     modifier onlyAllowed() {
-        require(allowedPlayers[msg.sender] || gamemasters[msg.sender], "Not allowed");
-        _;
+    require(hasRole(PLAYER_ROLE, msg.sender) || hasRole(GAMEMASTER_ROLE, msg.sender), "Not allowed");
+    _;
     }
 
     /**
@@ -204,14 +204,23 @@ contract GamesDAOv3 is AccessControl {
      * @notice Executes the proposal if voting is complete and conditions are met.
      */
     function executeProposal() external onlyAllowed {
-        require(block.timestamp > proposal.deadline, "Voting period not ended yet");
-        require(!proposal.executed, "Proposal already executed");
-        if (proposal.votesFor > proposal.votesAgainst) {
+    require(block.timestamp > proposal.deadline, "Voting period not ended yet");
+    require(!proposal.executed, "Proposal already executed");
+    proposal.executed = true;
+
+    if (proposal.votesFor > proposal.votesAgainst) {
+        if (proposal.proposalType == ProposalType.CHANGE_PRICE) {
             gamesTokenPriceInCents = proposal.newPrice;
-            emit ProposalExecuted(proposal.newPrice);
+        } else if (proposal.proposalType == ProposalType.SEND_FUNDS) {
+            // Logic to send funds
+            payable(owner).transfer(proposal.amount); // Example: transferring funds to owner
+        } else if (proposal.proposalType == ProposalType.UPDATE_CATCHPHRASE) {
+            // Logic to update catchphrase
+            greeting = proposal.catchphrase; // Example: updating a global catchphrase
         }
-        proposal.executed = true;
+        emit ProposalExecuted(proposal.newPrice, proposal.amount, proposal.catchphrase, proposal.proposalType);
     }
+}
 
 /**
  * @notice Allows a player to update their catchphrase.
@@ -239,4 +248,6 @@ function updateGamemasterStylePrompt(string calldata stylePrompt) external onlyR
     gamemasters[msg.sender].stylePrompt = stylePrompt;
     emit GamemasterStylePromptUpdated(msg.sender, stylePrompt);
 }
+
+
 }

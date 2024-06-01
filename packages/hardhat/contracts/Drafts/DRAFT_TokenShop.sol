@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
-
+// NOTE: THIS WORKS, ALTHOUGH THE PROPOSAL AND VOTING SYSTEM ISN'T TESTED.
+// SEE: ./GamesDAOv3.sol FOR THE LATEST VERSION OF THIS CONTRACT
 // Games Token deployed on Polygon Amoy
 
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol"; //Source "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol" not found: File import callback not supported(6275)
