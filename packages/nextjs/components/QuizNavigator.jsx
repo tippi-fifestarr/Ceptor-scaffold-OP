@@ -5,6 +5,7 @@ import EnvironmentForRace from "./QuizComponents/EnvironmentForRace";
 import JobForClass from "./QuizComponents/JobForClass";
 import MajorForBackground from "./QuizComponents/MajorForBackground";
 import Name from "./QuizComponents/Name";
+import SimpleOrComplex from "./QuizComponents/SimpleOrComplex";
 
 const State = {
   QUESTION0: "question0",
@@ -21,7 +22,7 @@ const State = {
   CHARACTER_PAGE: "characterPage",
 };
 
-const initialState = State.QUESTION1;
+const initialState = State.QUESTION0;
 
 export default function QuizNavigator({}) {
   const [currentState, setCurrentState] = useState(initialState);
@@ -29,9 +30,10 @@ export default function QuizNavigator({}) {
   const [myJob, setMyJob] = useState("");
   const [myMajor, setMyMajor] = useState("");
   const [characterName, setCharacterName] = useState("");
+  const [isSimpleQuiz, setIsSimpleQuiz] = useState(true);
 
   const questionComponentMap = {
-    [State.Question0]: "hello",
+    [State.QUESTION0]: <SimpleOrComplex isSimpleQuiz={isSimpleQuiz} setIsSimpleQuiz={setIsSimpleQuiz} />,
     [State.QUESTION1]: <EnvironmentForRace myEnvironment={myEnvironment} setMyEnvironment={setMyEnvironment} />,
     [State.QUESTION2]: <JobForClass myJob={myJob} setMyJob={setMyJob} />,
     [State.QUESTION3]: <MajorForBackground myMajor={myMajor} setMyMajor={setMyMajor} />,
@@ -53,11 +55,19 @@ export default function QuizNavigator({}) {
     ),
   };
 
-  function next() {
-    // if (charName === "") {
-    //   setCharName(RandomName());
+  // function simpleOrComplex() {
+  //   if (quizRoute) {
+  //     setCurrentState(State.QUESTION1);
+  //   } else {
+  //     setCurrentState(State.QUESTION6);
+  //   }
+  // }
 
+  function next() {
     switch (currentState) {
+      case State.QUESTION0:
+        isSimpleQuiz ? setCurrentState(State.QUESTION1) : setCurrentState(State.QUESTION6);
+        break;
       case State.QUESTION1:
         setCurrentState(State.QUESTION2);
         break;
@@ -145,7 +155,7 @@ export default function QuizNavigator({}) {
       <div className="pb-16">{questionComponentMap[currentState]}</div>
 
       <div className="fixed bottom-28 right-28">
-        {currentState !== State.QUESTION1 && currentState !== State.CHARACTER_PAGE ? (
+        {currentState !== State.QUESTION1 && currentState !== State.QUESTION5 && currentState !== State.QUESTION0 ? (
           <button
             className="btn bg-black border-0 px-4 py-2 rounded-md text-center text-base mr-2"
             id="back-button"
@@ -154,13 +164,25 @@ export default function QuizNavigator({}) {
             Back
           </button>
         ) : null}
-        {currentState !== State.GENERATE_CHARACTER && currentState !== State.CHARACTER_PAGE ? (
+        {currentState !== State.GENERATE_CHARACTER &&
+        currentState !== State.QUESTION5 &&
+        currentState !== State.QUESTION0 ? (
           <button
             className="btn bg-black border-0 px-4 py-2 rounded-md text-center text-base"
             id="next-button"
             onClick={next}
           >
             Next
+          </button>
+        ) : null}
+
+        {currentState === State.QUESTION0 ? (
+          <button
+            className="btn bg-black border-0 px-4 py-2 rounded-md text-center text-base mr-2"
+            id="simple-button"
+            onClick={next}
+          >
+            Start Quiz
           </button>
         ) : null}
       </div>
