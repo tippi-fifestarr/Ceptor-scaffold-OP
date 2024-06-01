@@ -124,8 +124,10 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
             <input
               type="text"
               onChange={e => handleNameChange(e.target.value, "firstName")}
-              className="w-3/4"
+              className="w-3/4 border-2 border-gray-300 rounded-md m-1 p-0.5"
               title="Enter custom first name"
+              // default text "Enter custom first name"
+            placeholder="Custom name"
             />
           </div>
         </div>
@@ -203,8 +205,10 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
             <input
               type="text"
               onChange={e => handleNameChange(e.target.value, "surname")}
-              className="w-3/4"
+              className="w-3/4 border-2 border-gray-300 rounded-md m-1 p-0.5"
               title="Enter custom surname"
+              placeholder="custom surname"
+
             />
           </div>
         </div>
@@ -282,8 +286,9 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
             <input
               type="text"
               onChange={e => handleNameChange(e.target.value, "descriptor")}
-              className="w-3/4"
+              className="w-3/4 border-2 border-gray-300 rounded-md m-1 p-0.5"
               title="Enter custom descriptor"
+              placeholder="custom descriptor"
             />
           </div>
         </div>
