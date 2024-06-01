@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Image from "next/image";
 import CharacterPage from "./QuizComponents/CharacterPage";
 import EnvironmentForRace from "./QuizComponents/EnvironmentForRace";
 import JobForClass from "./QuizComponents/JobForClass";
@@ -14,12 +15,6 @@ const State = {
   QUESTION3: "question3",
   QUESTION4: "question4",
   QUESTION5: "question5",
-  QUESTION6: "question6",
-  QUESTION7: "question7",
-  QUESTION8: "question8",
-  QUESTION9: "question9",
-  GENERATE_CHARACTER: "generateCharacter",
-  CHARACTER_PAGE: "characterPage",
 };
 
 const initialState = State.QUESTION0;
@@ -31,6 +26,7 @@ export default function QuizNavigator({}) {
   const [myMajor, setMyMajor] = useState("");
   const [characterName, setCharacterName] = useState("");
   const [isSimpleQuiz, setIsSimpleQuiz] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   const questionComponentMap = {
     [State.QUESTION0]: <SimpleOrComplex isSimpleQuiz={isSimpleQuiz} setIsSimpleQuiz={setIsSimpleQuiz} />,
@@ -55,48 +51,28 @@ export default function QuizNavigator({}) {
     ),
   };
 
-  // function simpleOrComplex() {
-  //   if (quizRoute) {
-  //     setCurrentState(State.QUESTION1);
-  //   } else {
-  //     setCurrentState(State.QUESTION6);
-  //   }
-  // }
 
   function next() {
     switch (currentState) {
       case State.QUESTION0:
-        isSimpleQuiz ? setCurrentState(State.QUESTION1) : setCurrentState(State.QUESTION6);
+        isSimpleQuiz ? setCurrentState(State.QUESTION1) : setCurrentState(State.QUESTION0);
+        setProgress(20);
         break;
       case State.QUESTION1:
         setCurrentState(State.QUESTION2);
+        setProgress(40);
         break;
       case State.QUESTION2:
         setCurrentState(State.QUESTION3);
+        setProgress(60);
         break;
       case State.QUESTION3:
         setCurrentState(State.QUESTION4);
+        setProgress(80);
         break;
       case State.QUESTION4:
         setCurrentState(State.QUESTION5);
-        break;
-      case State.QUESTION5:
-        setCurrentState(State.QUESTION6);
-        break;
-      case State.QUESTION6:
-        setCurrentState(State.QUESTION7);
-        break;
-      case State.QUESTION7:
-        setCurrentState(State.QUESTION8);
-        break;
-      case State.QUESTION8:
-        setCurrentState(State.QUESTION9);
-        break;
-      case State.QUESTION9:
-        setCurrentState(State.GENERATE_CHARACTER);
-        break;
-      case State.GENERATE_CHARACTER:
-        setCurrentState(State.CHARACTER_PAGE);
+        setProgress(100);
         break;
       default:
         break;
@@ -119,72 +95,77 @@ export default function QuizNavigator({}) {
       case State.QUESTION4:
         setCurrentState(State.QUESTION3);
         break;
-      case State.QUESTION5:
-        setCurrentState(State.QUESTION4);
-        break;
-      case State.QUESTION6:
-        setCurrentState(State.QUESTION5);
-        break;
-      case State.QUESTION7:
-        setCurrentState(State.QUESTION6);
-        break;
-      case State.QUESTION8:
-        setCurrentState(State.QUESTION7);
-        break;
-      case State.QUESTION9:
-        setCurrentState(State.QUESTION8);
-        break;
-      case State.GENERATE_CHARACTER:
-        setCurrentState(State.QUESTION9);
-        break;
       default:
         break;
     }
   }
 
   return (
-    <div className="mx-32 p-8 max-w-500 relative">
-      <h1 className="text-center text-4xl leading-8 mb-4">Ceptor Club Character</h1>
-      <h1 className="text-center text-4xl leading-8 mb-4">Generator</h1>
-      {/* {currentState !== State.QUESTION1 ? (
-        <h2 id="character-name" className="text-center text-2xl leading-8 m-8">
-        {charName}
-        </h2>
-      ) : null} */}
+    <div
+      style={{
+        position: "relative", // Set position to relative
+        width: "100%", // Ensure the container covers the entire viewport
+        height: "100%", // Ensure the container covers the entire viewport
+      }}
+    >
+      <Image
+        src="/QuizCellBackground.png"
+        width={1000}
+        height={1000}
+        alt="midPage"
+        className="object-auto w-full h-full"
+        style={{
+          position: "absolute", // Set position to absolute
+          top: 0, // Align to the top of the container
+          left: 0, // Align to the left of the container
+          zIndex: -10, // Set a lower z-index so that the content appears on top
+        }}
+      />
+      <div className="mx-32 mt-16 p-8 max-w-500 relative">
+        <h1 className="text-center text-4xl leading-8 mb-4">Ceptor Club Character</h1>
+        <h1 className="text-center text-4xl leading-8 mb-4">Generator</h1>
 
-      <div className="pb-16">{questionComponentMap[currentState]}</div>
+        <div className="pb-4 relative">
+          <div className="w-full bg-gray-300 h-4 rounded-full">
+            <div className="h-4 rounded-full" style={{ width: `${progress}%` }}></div>
+          </div>
+          <div className="text-center mt-2">{`${progress}% Completed`}</div>
+        </div>
 
-      <div className="fixed bottom-28 right-28">
-        {currentState !== State.QUESTION1 && currentState !== State.QUESTION5 && currentState !== State.QUESTION0 ? (
-          <button
-            className="btn bg-black border-0 px-4 py-2 rounded-md text-center text-base mr-2"
-            id="back-button"
-            onClick={back}
-          >
-            Back
-          </button>
-        ) : null}
-        {currentState !== State.GENERATE_CHARACTER &&
-        currentState !== State.QUESTION5 &&
-        currentState !== State.QUESTION0 ? (
-          <button
-            className="btn bg-black border-0 px-4 py-2 rounded-md text-center text-base"
-            id="next-button"
-            onClick={next}
-          >
-            Next
-          </button>
-        ) : null}
+        <div className="pb-16">{questionComponentMap[currentState]}</div>
 
-        {currentState === State.QUESTION0 ? (
-          <button
-            className="btn bg-black border-0 px-4 py-2 rounded-md text-center text-base mr-2"
-            id="simple-button"
-            onClick={next}
-          >
-            Start Quiz
-          </button>
-        ) : null}
+        <div className="fixed bottom-28 right-28">
+          {currentState !== State.QUESTION1 && currentState !== State.QUESTION5 && currentState !== State.QUESTION0 ? (
+            <button
+              className="btn bg-black border-0 px-4 py-2 rounded-md text-center text-base mr-2"
+              id="back-button"
+              onClick={back}
+            >
+              Back
+            </button>
+          ) : null}
+          {currentState !== State.GENERATE_CHARACTER &&
+          currentState !== State.QUESTION5 &&
+          currentState !== State.QUESTION0 ? (
+            <button
+              className="btn bg-black border-0 px-4 py-2 rounded-md text-center text-base"
+              id="next-button"
+              onClick={next}
+            >
+              Next
+            </button>
+          ) : null}
+
+          {currentState === State.QUESTION0 ? (
+            <button
+              className="btn bg-black border-0 px-4 py-2 rounded-md text-center text-base mr-2"
+              id="simple-button"
+              onClick={next}
+            >
+              Start Quiz
+            </button>
+          ) : null}
+        </div>
       </div>
     </div>
   );

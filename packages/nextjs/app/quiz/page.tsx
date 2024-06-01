@@ -1,6 +1,7 @@
 "use client";
 
 // import { useState } from "react";
+import Image from "next/image";
 import QuizNavigator from "../../components/QuizNavigator";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
@@ -11,8 +12,17 @@ const Quiz: NextPage = () => {
   // const buttonPosition = { bottom: 16, right: 16 };
 
   return (
-    <>
-      <div className="flex items-center flex-col flex-grow pt-10">
+    <div className="relative">
+      <div className="fixed top-0 h-screen w-screen z-0">
+        <Image
+          src="/QuizBackground.png"
+          width={1000}
+          height={1000}
+          alt="midPage"
+          className="object-cover w-full h-full"
+        />
+      </div>
+      <div className="flex items-center flex-col flex-grow pt-10 relative z-10">
         <div className="px-5">
           <h1 className="text-center">
             <span className="block text-2xl mb-2">Welcome to</span>
@@ -27,7 +37,7 @@ const Quiz: NextPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
