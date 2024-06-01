@@ -18,6 +18,7 @@ const clericDescriptors = ["Compassionate", "Devout", "Pious", "Righteous", "Cep
 const thiefDescriptors = ["Cunning", "Deceptive", "Nimble", "Stealthy", "Ceptorific"];
 
 export default function Name({ myEnvironment, myJob, characterName, setCharacterName }) {
+  console.log(characterName)
   const [nameObject, setNameObject] = useState({
     firstName: "",
     surname: "",
@@ -43,7 +44,7 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
       </div>
       <div>Choose from the options below to name your character, or feel free to type in your own name.</div>
 
-      <div className="grid grid-cols-3 gap-8 mt-2 text-xl text-black">
+      <div className="grid grid-cols-3 gap-8 mt-2 text-xl">
         <div className="mb-4">First Name</div>
         <div className="mb-4">Surname</div>
         <div className="mb-4">Descriptor</div>
@@ -61,14 +62,8 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                     id={`elf-first-name-${index}`}
                     checked={nameObject.firstName === firstName}
                     onChange={() => handleNameChange(firstName, "firstName")}
-                    className="hidden"
                   />
-                  <label
-                    htmlFor={`elf-first-name-${index}`}
-                    className={`cursor-pointer p-2 rounded-md ${
-                      nameObject.firstName === firstName ? "border-2 border-solid border-ceptor p-1" : ""
-                    }`}
-                  >
+                  <label htmlFor={`elf-first-name-${index}`} className={`cursor-pointer p-2 rounded-md`}>
                     {firstName}
                   </label>
                 </div>
@@ -84,14 +79,8 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                     id={`dwarf-first-name-${index}`}
                     checked={nameObject.firstName === firstName}
                     onChange={() => handleNameChange(firstName, "firstName")}
-                    className="hidden"
                   />
-                  <label
-                    htmlFor={`dwarf-first-name-${index}`}
-                    className={`cursor-pointer p-2 rounded-md ${
-                      nameObject.firstName === firstName ? "border-2 border-solid border-ceptor p-1" : ""
-                    }`}
-                  >
+                  <label htmlFor={`dwarf-first-name-${index}`} className={`cursor-pointer p-2 rounded-md`}>
                     {firstName}
                   </label>
                 </div>
@@ -107,14 +96,8 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                     id={`human-first-name-${index}`}
                     checked={nameObject.firstName === firstName}
                     onChange={() => handleNameChange(firstName, "firstName")}
-                    className="hidden"
                   />
-                  <label
-                    htmlFor={`human-first-name-${index}`}
-                    className={`cursor-pointer p-2 rounded-md ${
-                      nameObject.firstName === firstName ? "border-2 border-solid border-ceptor p-1" : ""
-                    }`}
-                  >
+                  <label htmlFor={`human-first-name-${index}`} className={`cursor-pointer p-2 rounded-md`}>
                     {firstName}
                   </label>
                 </div>
@@ -130,14 +113,8 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                     id={`halfling-first-name-${index}`}
                     checked={nameObject.firstName === firstName}
                     onChange={() => handleNameChange(firstName, "firstName")}
-                    className="hidden"
                   />
-                  <label
-                    htmlFor={`halfling-first-name-${index}`}
-                    className={`cursor-pointer p-2 rounded-md ${
-                      nameObject.firstName === firstName ? "border-2 border-solid border-ceptor p-1" : ""
-                    }`}
-                  >
+                  <label htmlFor={`halfling-first-name-${index}`} className={`cursor-pointer p-2 rounded-md`}>
                     {firstName}
                   </label>
                 </div>
@@ -148,7 +125,7 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
               type="text"
               onChange={e => handleNameChange(e.target.value, "firstName")}
               className="w-3/4"
-              Title="Enter custom first name"
+              title="Enter custom first name"
             />
           </div>
         </div>
@@ -164,14 +141,8 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                     id={`elf-surname-${index}`}
                     checked={nameObject.surname === surname}
                     onChange={() => handleNameChange(surname, "surname")}
-                    className="hidden"
                   />
-                  <label
-                    htmlFor={`elf-surname-${index}`}
-                    className={`cursor-pointer p-2 rounded-md ${
-                      nameObject.surname === surname ? "border-2 border-solid border-ceptor p-1" : ""
-                    }`}
-                  >
+                  <label htmlFor={`elf-surname-${index}`} className={`cursor-pointer p-2 rounded-md`}>
                     {surname}
                   </label>
                 </div>
@@ -187,14 +158,8 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                     id={`dwarf-surname-${index}`}
                     checked={nameObject.surname === surname}
                     onChange={() => handleNameChange(surname, "surname")}
-                    className="hidden"
                   />
-                  <label
-                    htmlFor={`dwarf-surname-${index}`}
-                    className={`cursor-pointer p-2 rounded-md ${
-                      nameObject.surname === surname ? "border-2 border-solid border-ceptor p-1" : ""
-                    }`}
-                  >
+                  <label htmlFor={`dwarf-surname-${index}`} className={`cursor-pointer p-2 rounded-md`}>
                     {surname}
                   </label>
                 </div>
@@ -210,14 +175,8 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                     id={`human-surname-${index}`}
                     checked={nameObject.surname === surname}
                     onChange={() => handleNameChange(surname, "surname")}
-                    className="hidden"
                   />
-                  <label
-                    htmlFor={`human-surname-${index}`}
-                    className={`cursor-pointer p-2 rounded-md ${
-                      nameObject.surname === surname ? "border-2 border-solid border-ceptor p-1" : ""
-                    }`}
-                  >
+                  <label htmlFor={`human-surname-${index}`} className={`cursor-pointer p-2 rounded-md`}>
                     {surname}
                   </label>
                 </div>
@@ -233,14 +192,8 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                     id={`halfling-surname-${index}`}
                     checked={nameObject.surname === surname}
                     onChange={() => handleNameChange(surname, "surname")}
-                    className="hidden"
                   />
-                  <label
-                    htmlFor={`halfling-surname-${index}`}
-                    className={`cursor-pointer p-2 rounded-md ${
-                      nameObject.surname === surname ? "border-2 border-solid border-ceptor p-1" : ""
-                    }`}
-                  >
+                  <label htmlFor={`halfling-surname-${index}`} className={`cursor-pointer p-2 rounded-md`}>
                     {surname}
                   </label>
                 </div>
@@ -251,7 +204,7 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
               type="text"
               onChange={e => handleNameChange(e.target.value, "surname")}
               className="w-3/4"
-              Title="Enter custom surname"
+              title="Enter custom surname"
             />
           </div>
         </div>
@@ -267,14 +220,8 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                     id={`fighter-descriptor-${index}`}
                     checked={nameObject.descriptor === descriptor}
                     onChange={() => handleNameChange(descriptor, "descriptor")}
-                    className="hidden"
                   />
-                  <label
-                    htmlFor={`fighter-descriptor-${index}`}
-                    className={`cursor-pointer p-2 rounded-md ${
-                      nameObject.descriptor === descriptor ? "border-2 border-solid border-ceptor p-1" : ""
-                    }`}
-                  >
+                  <label htmlFor={`fighter-descriptor-${index}`} className={`cursor-pointer p-2 rounded-md`}>
                     {descriptor}
                   </label>
                 </div>
@@ -290,14 +237,8 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                     id={`mage-descriptor-${index}`}
                     checked={nameObject.descriptor === descriptor}
                     onChange={() => handleNameChange(descriptor, "descriptor")}
-                    className="hidden"
                   />
-                  <label
-                    htmlFor={`mage-descriptor-${index}`}
-                    className={`cursor-pointer p-2 rounded-md ${
-                      nameObject.descriptor === descriptor ? "border-2 border-solid border-ceptor p-1" : ""
-                    }`}
-                  >
+                  <label htmlFor={`mage-descriptor-${index}`} className={`cursor-pointer p-2 rounded-md`}>
                     {descriptor}
                   </label>
                 </div>
@@ -313,14 +254,8 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                     id={`cleric-descriptor-${index}`}
                     checked={nameObject.descriptor === descriptor}
                     onChange={() => handleNameChange(descriptor, "descriptor")}
-                    className="hidden"
                   />
-                  <label
-                    htmlFor={`cleric-descriptor-${index}`}
-                    className={`cursor-pointer p-2 rounded-md ${
-                      nameObject.descriptor === descriptor ? "border-2 border-solid border-ceptor p-1" : ""
-                    }`}
-                  >
+                  <label htmlFor={`cleric-descriptor-${index}`} className={`cursor-pointer p-2 rounded-md`}>
                     {descriptor}
                   </label>
                 </div>
@@ -336,14 +271,8 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
                     id={`thief-descriptor-${index}`}
                     checked={nameObject.descriptor === descriptor}
                     onChange={() => handleNameChange(descriptor, "descriptor")}
-                    className="hidden"
                   />
-                  <label
-                    htmlFor={`thief-descriptor-${index}`}
-                    className={`cursor-pointer p-2 rounded-md ${
-                      nameObject.descriptor === descriptor ? "border-2 border-solid border-ceptor p-1" : ""
-                    }`}
-                  >
+                  <label htmlFor={`thief-descriptor-${index}`} className={`cursor-pointer p-2 rounded-md`}>
                     {descriptor}
                   </label>
                 </div>
@@ -354,13 +283,13 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
               type="text"
               onChange={e => handleNameChange(e.target.value, "descriptor")}
               className="w-3/4"
-              Title="Enter custom descriptor"
+              title="Enter custom descriptor"
             />
           </div>
         </div>
       </div>
 
-      <div>
+      <div className="mt-4 text-xl">
         Your character is called {nameObject.firstName} {nameObject.surname} the {nameObject.descriptor}!
       </div>
     </>

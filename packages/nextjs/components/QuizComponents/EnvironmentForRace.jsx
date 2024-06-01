@@ -14,14 +14,8 @@ export default function EnvironmentForRace({ myEnvironment, setMyEnvironment }) 
               setMyEnvironment(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Elf"
-            className={`cursor-pointer p-2 rounded-md ${
-              myEnvironment === "Elf" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Elf" className={`cursor-pointer p-2 rounded-md`}>
             Forests
           </label>
         </div>
@@ -37,14 +31,8 @@ export default function EnvironmentForRace({ myEnvironment, setMyEnvironment }) 
               setMyEnvironment(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Dwarf"
-            className={`cursor-pointer p-2 rounded-md ${
-              myEnvironment === "Dwarf" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Dwarf" className={`cursor-pointer p-2 rounded-md`}>
             Mountains
           </label>
         </div>
@@ -60,14 +48,8 @@ export default function EnvironmentForRace({ myEnvironment, setMyEnvironment }) 
               setMyEnvironment(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Human"
-            className={`cursor-pointer p-2 rounded-md ${
-              myEnvironment === "Human" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Human" className={`cursor-pointer p-2 rounded-md`}>
             Cities
           </label>
         </div>
@@ -83,14 +65,8 @@ export default function EnvironmentForRace({ myEnvironment, setMyEnvironment }) 
               setMyEnvironment(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Halfling"
-            className={`cursor-pointer p-2 rounded-md ${
-              myEnvironment === "Halfling" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Halfling" className={`cursor-pointer p-2 rounded-md`}>
             Farmland
           </label>
         </div>

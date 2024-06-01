@@ -14,14 +14,8 @@ export default function JobForClass({ myJob, setMyJob }) {
               setMyJob(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Fighter"
-            className={`cursor-pointer p-2 rounded-md ${
-              myJob === "Fighter" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Fighter" className={`cursor-pointer p-2 rounded-md`}>
             Martial Artist
           </label>
         </div>
@@ -37,14 +31,8 @@ export default function JobForClass({ myJob, setMyJob }) {
               setMyJob(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Cleric"
-            className={`cursor-pointer p-2 rounded-md ${
-              myJob === "Cleric" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Cleric" className={`cursor-pointer p-2 rounded-md`}>
             Paramedic
           </label>
         </div>
@@ -60,14 +48,8 @@ export default function JobForClass({ myJob, setMyJob }) {
               setMyJob(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Mage"
-            className={`cursor-pointer p-2 rounded-md ${
-              myJob === "Mage" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Mage" className={`cursor-pointer p-2 rounded-md`}>
             Research Scientist
           </label>
         </div>
@@ -83,14 +65,8 @@ export default function JobForClass({ myJob, setMyJob }) {
               setMyJob(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Thief"
-            className={`cursor-pointer p-2 rounded-md ${
-              myJob === "Thief" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Thief" className={`cursor-pointer p-2 rounded-md`}>
             Private Investigator
           </label>
         </div>

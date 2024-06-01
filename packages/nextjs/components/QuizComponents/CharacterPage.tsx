@@ -83,8 +83,71 @@ export default function CharacterPage({ myJob, myEnvironment, myMajor, character
       break;
   }
 
+  switch (myMajor) {
+    case "Acolyte":
+      character = {
+        ...character,
+        alignment: "Chaotic Good",
+      };
+      break;
+    case "Criminal":
+      character = {
+        ...character,
+        alignment: "Lawful Evil",
+      };
+      break;
+    case "Noble":
+      character = {
+        ...character,
+        alignment: "Lawful Good",
+      };
+      break;
+    case "Sage":
+      character = {
+        ...character,
+        alignment: "Lawful Neutral",
+      };
+      break;
+    case "Soldier":
+      character = {
+        ...character,
+        alignment: "Neutral Evil",
+      };
+      break;
+    case "Outlander":
+      character = {
+        ...character,
+        alignment: "Chaotic Neutral",
+      };
+      break;
+    case "Entertainer":
+      character = {
+        ...character,
+        alignment: "True Neutral",
+      };
+      break;
+    default:
+      character = {
+        ...character,
+        alignment: "Neutral Good",
+      };
+      break;
+  }
+
   if (!character) {
     return <div>Character Data is not available.</div>;
+  }
+
+  if (
+    characterName.firstName === undefined ||
+    characterName.surname === undefined ||
+    characterName.descriptor === undefined
+  ) {
+    characterName = {
+      firstName: characterName.firstName || "Hooty",
+      surname: characterName.surname || "Dooty",
+      descriptor: characterName.descriptor || "Ceptorific",
+    };
   }
 
   character = {
@@ -92,6 +155,8 @@ export default function CharacterPage({ myJob, myEnvironment, myMajor, character
     name: `${characterName.firstName} ${characterName.surname} the ${characterName.descriptor}`,
     background: myMajor,
   };
+
+  console.log(character);
 
   return (
     <div className="bg-gray-800 text-white p-5 rounded-lg shadow-md opacity-90">

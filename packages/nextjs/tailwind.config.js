@@ -87,6 +87,7 @@ module.exports = {
     },
     colors: {
       ceptor: "#FFFF00",
+      black: "#000000",
     },
   },
 };

@@ -1,14 +1,13 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import CharacterPage from "./QuizComponents/CharacterPage";
 import EnvironmentForRace from "./QuizComponents/EnvironmentForRace";
 import JobForClass from "./QuizComponents/JobForClass";
 import MajorForBackground from "./QuizComponents/MajorForBackground";
 import Name from "./QuizComponents/Name";
-import CharacterPage from "./QuizComponents/CharacterPage"
-
-// import { RandomName } from "./RandomName";
 
 const State = {
+  QUESTION0: "question0",
   QUESTION1: "question1",
   QUESTION2: "question2",
   QUESTION3: "question3",
@@ -32,6 +31,7 @@ export default function QuizNavigator({}) {
   const [characterName, setCharacterName] = useState("");
 
   const questionComponentMap = {
+    [State.Question0]: "hello",
     [State.QUESTION1]: <EnvironmentForRace myEnvironment={myEnvironment} setMyEnvironment={setMyEnvironment} />,
     [State.QUESTION2]: <JobForClass myJob={myJob} setMyJob={setMyJob} />,
     [State.QUESTION3]: <MajorForBackground myMajor={myMajor} setMyMajor={setMyMajor} />,
@@ -39,35 +39,18 @@ export default function QuizNavigator({}) {
       <Name
         characterName={characterName}
         setCharacterName={setCharacterName}
-        myJob={myJob}
-        myEnvironment={myEnvironment}
+        myJob={myJob || "Fighter"}
+        myEnvironment={myEnvironment || "Human"}
       />
     ),
     [State.QUESTION5]: (
-      <CharacterPage myEnvironment={myEnvironment} myJob={myJob} myMajor={myMajor} characterName={characterName} />
+      <CharacterPage
+        myEnvironment={myEnvironment}
+        myJob={myJob}
+        myMajor={myMajor || "Folk Hero"}
+        characterName={characterName}
+      />
     ),
-    // [State.QUESTION6]: <AlignmentGoodEvil myAlignment={myAlignment} setMyAlignment={setMyAlignment} />,
-    // [State.QUESTION7]: (
-    //   <HumanoidOrNo humanoidOrNo={humanoidOrNo} setHumanoidOrNo={setHumanoidOrNo} setSpecies={setSpecies} />
-    // ),
-    // [State.QUESTION8]: <Species humanoidOrNo={humanoidOrNo} species={species} setSpecies={setSpecies} />,
-    // [State.QUESTION9]: <Background background={background} setBackground={setBackground} />,
-    // [State.GENERATE_CHARACTER]: (
-    //   <GenerateCharacter
-    //     charName={charName}
-    //     level={level}
-    //     gender={gender}
-    //     weapon={weapon}
-    //     interest={interest}
-    //     partyPos={partyPos}
-    //     species={species}
-    //     background={background}
-    //     State={State}
-    //     myAlignment={myAlignment}
-    //     setCurrentState={setCurrentState}
-    //   />
-    // ),
-    // [State.CHARACTER_PAGE]: <CharacterPage />,
   };
 
   function next() {
@@ -150,7 +133,7 @@ export default function QuizNavigator({}) {
   }
 
   return (
-    <div className="text-ceptor mx-32 p-8 max-w-500 relative">
+    <div className="mx-32 p-8 max-w-500 relative">
       <h1 className="text-center text-4xl leading-8 mb-4">Ceptor Club Character</h1>
       <h1 className="text-center text-4xl leading-8 mb-4">Generator</h1>
       {/* {currentState !== State.QUESTION1 ? (
@@ -164,7 +147,7 @@ export default function QuizNavigator({}) {
       <div className="fixed bottom-28 right-28">
         {currentState !== State.QUESTION1 && currentState !== State.CHARACTER_PAGE ? (
           <button
-            className="bg-ceptor border-0 text-black px-4 py-2 rounded-md text-center text-base mr-2"
+            className="btn bg-black border-0 px-4 py-2 rounded-md text-center text-base mr-2"
             id="back-button"
             onClick={back}
           >
@@ -173,7 +156,7 @@ export default function QuizNavigator({}) {
         ) : null}
         {currentState !== State.GENERATE_CHARACTER && currentState !== State.CHARACTER_PAGE ? (
           <button
-            className="bg-ceptor border-0 text-black px-4 py-2 rounded-md text-center text-base"
+            className="btn bg-black border-0 px-4 py-2 rounded-md text-center text-base"
             id="next-button"
             onClick={next}
           >

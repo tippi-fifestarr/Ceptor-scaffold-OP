@@ -14,14 +14,8 @@ export default function MajorForBackground({ myMajor, setMyMajor }) {
               setMyMajor(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Acolyte"
-            className={`cursor-pointer p-2 rounded-md ${
-              myMajor === "Acolyte" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Acolyte" className={`cursor-pointer p-2 rounded-md`}>
             Religious Studies
           </label>
         </div>
@@ -37,14 +31,8 @@ export default function MajorForBackground({ myMajor, setMyMajor }) {
               setMyMajor(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Criminal"
-            className={`cursor-pointer p-2 rounded-md ${
-              myMajor === "Criminal" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Criminal" className={`cursor-pointer p-2 rounded-md`}>
             Criminology
           </label>
         </div>
@@ -60,14 +48,8 @@ export default function MajorForBackground({ myMajor, setMyMajor }) {
               setMyMajor(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Folk Hero"
-            className={`cursor-pointer p-2 rounded-md ${
-              myMajor === "Folk Hero" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Folk Hero" className={`cursor-pointer p-2 rounded-md`}>
             Social Work
           </label>
         </div>
@@ -83,14 +65,8 @@ export default function MajorForBackground({ myMajor, setMyMajor }) {
               setMyMajor(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Noble"
-            className={`cursor-pointer p-2 rounded-md ${
-              myMajor === "Noble" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Noble" className={`cursor-pointer p-2 rounded-md`}>
             Political Science
           </label>
         </div>
@@ -106,14 +82,8 @@ export default function MajorForBackground({ myMajor, setMyMajor }) {
               setMyMajor(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Sage"
-            className={`cursor-pointer p-2 rounded-md ${
-              myMajor === "Sage" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Sage" className={`cursor-pointer p-2 rounded-md`}>
             Library Science
           </label>
         </div>
@@ -129,14 +99,8 @@ export default function MajorForBackground({ myMajor, setMyMajor }) {
               setMyMajor(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Soldier"
-            className={`cursor-pointer p-2 rounded-md ${
-              myMajor === "Soldier" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Soldier" className={`cursor-pointer p-2 rounded-md`}>
             Military Science
           </label>
         </div>
@@ -152,14 +116,8 @@ export default function MajorForBackground({ myMajor, setMyMajor }) {
               setMyMajor(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Outlander"
-            className={`cursor-pointer p-2 rounded-md ${
-              myMajor === "Outlander" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Outlander" className={`cursor-pointer p-2 rounded-md`}>
             Environmental Science
           </label>
         </div>
@@ -175,14 +133,8 @@ export default function MajorForBackground({ myMajor, setMyMajor }) {
               setMyMajor(selectedOption);
               console.log(selectedOption);
             }}
-            className="hidden"
           />
-          <label
-            htmlFor="Entertainer"
-            className={`cursor-pointer p-2 rounded-md ${
-              myMajor === "Entertainer" ? "border-4 border-solid border-ceptor p-2" : ""
-            }`}
-          >
+          <label htmlFor="Entertainer" className={`cursor-pointer p-2 rounded-md`}>
             Performing Arts
           </label>
         </div>

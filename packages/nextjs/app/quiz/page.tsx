@@ -22,10 +22,7 @@ const Quiz: NextPage = () => {
             <p className="my-2 font-medium">Connected Address:</p>
             <Address address={connectedAddress} />
           </div>
-          <div
-            className="w-full flex flex-wrap justify-around items-center p-5 border border-ceptor mt-0"
-            style={{ height: "500px", width: "750px" }}
-          >
+          <div className="w-full flex flex-wrap justify-around items-center p-5 mt-0">
             <QuizNavigator />
           </div>
         </div>
