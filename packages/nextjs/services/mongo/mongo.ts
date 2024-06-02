@@ -1,6 +1,7 @@
 import getConfig from "next/config";
+import { Character } from "../../components/ceptor/CharacterData";
 import { InsertOneResult, MongoClient, MongoServerError, WithId } from "mongodb";
-import { DuplicateUserError } from "~~/models/errors";
+import { DuplicateCharacterError, DuplicateUserError } from "~~/models/errors";
 import { User } from "~~/models/user";
 
 const { serverRuntimeConfig } = getConfig();
@@ -15,6 +16,7 @@ if (!serverRuntimeConfig.mongoConfig.db) {
 
 const client = new MongoClient(serverRuntimeConfig.mongoConfig.connectionStr);
 const usersCollection = client.db(serverRuntimeConfig.mongoConfig.db).collection<User>("User");
+const charactersCollection = client.db(serverRuntimeConfig.mongoConfig.db).collection<Character>("Character");
 
 //function to connect to mongoDB and save a user to the database
 export async function saveUser(user: User): Promise<InsertOneResult<User>> {
@@ -42,4 +44,16 @@ export async function getUserById(id: string): Promise<WithId<User> | null> {
 export async function getAllUsers(): Promise<WithId<User>[]> {
   const usersCursor = usersCollection.find();
   return await usersCursor.toArray();
+}
+
+//function to save character
+export async function saveCharacter(character: Character): Promise<InsertOneResult<Character>> {
+  try {
+    return await charactersCollection.insertOne(character);
+  } catch (err) {
+    if (err instanceof MongoServerError && err.code === 11000) {
+      throw new DuplicateCharacterError();
+    }
+    throw err;
+  }
 }

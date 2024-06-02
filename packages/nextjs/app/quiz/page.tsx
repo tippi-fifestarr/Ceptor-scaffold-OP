@@ -10,7 +10,6 @@ import { Address, RainbowKitCustomConnectButton } from "~~/components/scaffold-e
 
 const Quiz: NextPage = () => {
   const { address: connectedAddress } = useAccount();
-  // const buttonPosition = { bottom: 16, right: 16 };
 
   return (
     <div className="relative">

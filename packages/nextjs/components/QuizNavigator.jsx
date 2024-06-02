@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Image from "next/image";
+import { saveCharacter } from "../services/mongo/mongo"; //not sure why this isn't working
 import {
   CharacterPage,
   EnvironmentForRace,
@@ -110,7 +111,8 @@ export default function QuizNavigator({}) {
     }
   }
 
-  function save() {
+  function save(character) {
+    saveCharacter(character);
     console.log(character);
   }
 
