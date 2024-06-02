@@ -4,7 +4,7 @@ import { AppProviders } from "~~/components/AppProviders";
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <AppProviders>
-      <main className="flex flex-col items-center justify-center bg-black h-dvh overflow-hidden">{children}</main>
+      <main className="flex flex-col min-h-screen">{children}</main>
     </AppProviders>
   );
 };
