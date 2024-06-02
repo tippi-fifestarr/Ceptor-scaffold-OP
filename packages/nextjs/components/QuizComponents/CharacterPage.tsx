@@ -1,4 +1,5 @@
-import { defaultCleric, defaultFighter, defaultMage, defaultThief } from "../ceptor/CharacterData";
+import { useEffect } from "react";
+import { Character, defaultCleric, defaultFighter, defaultMage, defaultThief } from "../ceptor/CharacterData";
 
 // Define the prop types
 interface CharacterName {
@@ -12,151 +13,172 @@ interface CharacterPageProps {
   myEnvironment: "Elf" | "Dwarf" | "Halfling" | "Human";
   myMajor: string;
   characterName: CharacterName;
+  character: any;
+  setCharacter: (character: any) => void;
 }
 
 // Define the component with the props type
-export default function CharacterPage({ myJob, myEnvironment, myMajor, characterName }: CharacterPageProps) {
-  let character;
-  switch (myJob) {
-    case "Cleric":
-      character = defaultCleric;
-      break;
-    case "Mage":
-      character = defaultMage;
-      break;
-    case "Thief":
-      character = defaultThief;
-      break;
-    default:
-      character = defaultFighter;
-      break;
-  }
+export default function CharacterPage({
+  myJob,
+  myEnvironment,
+  myMajor,
+  characterName,
+  character,
+  setCharacter,
+}: CharacterPageProps) {
+  useEffect(() => {
+    console.log("useEffect triggered");
 
-  switch (myEnvironment) {
-    case "Elf":
-      character = {
-        ...character,
-        race: "Wood Elf",
-        abilities: {
-          ...character.abilities,
-          dexterity: character.abilities.dexterity + 2,
-          wisdom: character.abilities.wisdom + 1,
-        },
-      };
-      break;
-    case "Dwarf":
-      character = {
-        ...character,
-        race: "Mountain Dwarf",
-        abilities: {
-          ...character.abilities,
-          strength: character.abilities.strength + 2,
-          constitution: character.abilities.constitution + 2,
-        },
-        combatStats: {
-          ...character.combatStats,
-          speed: "25 feet",
-        },
-      };
-      break;
-    case "Halfling":
-      character = {
-        ...character,
-        race: "Lightfoot Halfling",
-        abilities: {
-          ...character.abilities,
-          dexterity: character.abilities.dexterity + 2,
-          charisma: character.abilities.charisma + 1,
-        },
-        combatStats: {
-          ...character.combatStats,
-          speed: "25 feet",
-        },
-      };
-      break;
-    default:
-      character = {
-        ...character,
-        race: "Human",
-        abilities: Object.fromEntries(Object.entries(character.abilities).map(([key, value]) => [key, value + 1])),
-      };
-      break;
-  }
+    let newCharacter: Character;
 
-  switch (myMajor) {
-    case "Acolyte":
-      character = {
-        ...character,
-        alignment: "Chaotic Good",
-      };
-      break;
-    case "Criminal":
-      character = {
-        ...character,
-        alignment: "Lawful Evil",
-      };
-      break;
-    case "Noble":
-      character = {
-        ...character,
-        alignment: "Lawful Good",
-      };
-      break;
-    case "Sage":
-      character = {
-        ...character,
-        alignment: "Lawful Neutral",
-      };
-      break;
-    case "Soldier":
-      character = {
-        ...character,
-        alignment: "Neutral Evil",
-      };
-      break;
-    case "Outlander":
-      character = {
-        ...character,
-        alignment: "Chaotic Neutral",
-      };
-      break;
-    case "Entertainer":
-      character = {
-        ...character,
-        alignment: "True Neutral",
-      };
-      break;
-    default:
-      character = {
-        ...character,
-        alignment: "Neutral Good",
-      };
-      break;
-  }
+    switch (myJob) {
+      case "Cleric":
+        newCharacter = { ...defaultCleric };
+        break;
+      case "Mage":
+        newCharacter = { ...defaultMage };
+        break;
+      case "Thief":
+        newCharacter = { ...defaultThief };
+        break;
+      default:
+        newCharacter = { ...defaultFighter };
+        break;
+    }
 
-  if (!character) {
-    return <div>Character Data is not available.</div>;
-  }
+    switch (myEnvironment) {
+      case "Elf":
+        newCharacter = {
+          ...newCharacter,
+          race: "Wood Elf",
+          abilities: {
+            ...newCharacter.abilities,
+            dexterity: newCharacter.abilities.dexterity + 2,
+            wisdom: newCharacter.abilities.wisdom + 1,
+          },
+        };
+        break;
+      case "Dwarf":
+        newCharacter = {
+          ...newCharacter,
+          race: "Mountain Dwarf",
+          abilities: {
+            ...newCharacter.abilities,
+            strength: newCharacter.abilities.strength + 2,
+            constitution: newCharacter.abilities.constitution + 2,
+          },
+          combatStats: {
+            ...newCharacter.combatStats,
+            speed: "25 feet",
+          },
+        };
+        break;
+      case "Halfling":
+        newCharacter = {
+          ...newCharacter,
+          race: "Lightfoot Halfling",
+          abilities: {
+            ...newCharacter.abilities,
+            dexterity: newCharacter.abilities.dexterity + 2,
+            charisma: newCharacter.abilities.charisma + 1,
+          },
+          combatStats: {
+            ...newCharacter.combatStats,
+            speed: "25 feet",
+          },
+        };
+        break;
+      default:
+        newCharacter = {
+          ...newCharacter,
+          race: "Human",
+          abilities: {
+            strength: 0,
+            dexterity: 0,
+            constitution: 0,
+            intelligence: 0,
+            wisdom: 0,
+            charisma: 0,
+            ...Object.fromEntries(Object.entries(newCharacter.abilities).map(([key, value]) => [key, value + 1])),
+          },
+        };
+        break;
+    }
 
-  if (
-    characterName.firstName === undefined ||
-    characterName.surname === undefined ||
-    characterName.descriptor === undefined
-  ) {
-    characterName = {
+    switch (myMajor) {
+      case "Acolyte":
+        newCharacter = {
+          ...newCharacter,
+          alignment: "Chaotic Good",
+        };
+        break;
+      case "Criminal":
+        newCharacter = {
+          ...newCharacter,
+          alignment: "Lawful Evil",
+        };
+        break;
+      case "Noble":
+        newCharacter = {
+          ...newCharacter,
+          alignment: "Lawful Good",
+        };
+        break;
+      case "Sage":
+        newCharacter = {
+          ...newCharacter,
+          alignment: "Lawful Neutral",
+        };
+        break;
+      case "Soldier":
+        newCharacter = {
+          ...newCharacter,
+          alignment: "Neutral Evil",
+        };
+        break;
+      case "Outlander":
+        newCharacter = {
+          ...newCharacter,
+          alignment: "Chaotic Neutral",
+        };
+        break;
+      case "Entertainer":
+        newCharacter = {
+          ...newCharacter,
+          alignment: "True Neutral",
+        };
+        break;
+      default:
+        newCharacter = {
+          ...newCharacter,
+          alignment: "Neutral Good",
+        };
+        break;
+    }
+
+    const finalCharacterName = {
       firstName: characterName.firstName || "Hooty",
       surname: characterName.surname || "Dooty",
       descriptor: characterName.descriptor || "Ceptorific",
     };
+
+    newCharacter = {
+      ...newCharacter,
+      name: `${finalCharacterName.firstName} ${finalCharacterName.surname} the ${finalCharacterName.descriptor}`,
+      background: myMajor,
+    };
+
+    console.log("Generated new character:", newCharacter);
+
+    if (JSON.stringify(newCharacter) !== JSON.stringify(character)) {
+      console.log("Updating character state");
+      setCharacter(newCharacter);
+    }
+  }, [myJob, myEnvironment, myMajor, characterName, character, setCharacter]);
+
+  if (!character || Object.keys(character).length === 0) {
+    return <div>Loading character data...</div>;
   }
-
-  character = {
-    ...character,
-    name: `${characterName.firstName} ${characterName.surname} the ${characterName.descriptor}`,
-    background: myMajor,
-  };
-
-  console.log(character);
 
   return (
     <div className="bg-gray-800 text-white p-5 rounded-lg shadow-md opacity-90">
@@ -170,7 +192,7 @@ export default function CharacterPage({ myJob, myEnvironment, myMajor, character
         <h3 className="font-bold">Abilities:</h3>
         {Object.entries(character.abilities).map(([ability, value]) => (
           <p key={ability}>
-            {ability}: {value}
+            {ability}: {value as number}
           </p>
         ))}
       </div>

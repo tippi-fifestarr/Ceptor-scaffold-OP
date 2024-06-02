@@ -18,7 +18,7 @@ export default function SimpleOrComplex({ isSimpleQuiz, setIsSimpleQuiz }) {
           type="radio"
           value="true" // Set value to "true" for the simple option
           id="simple"
-          checked={isSimpleQuiz === true}
+          defaultChecked={isSimpleQuiz === true}
           onChange={() => setIsSimpleQuiz(true)}
         />
         <label htmlFor="simple" className={`cursor-pointer p-2 rounded-md`}>
@@ -31,7 +31,8 @@ export default function SimpleOrComplex({ isSimpleQuiz, setIsSimpleQuiz }) {
           value="false" // Set value to "false" for the complex option
           id="complex"
           checked={isSimpleQuiz === false}
-        //   onChange={() => setIsSimpleQuiz(false)} - Will uncomment when Complex quiz is transferred over
+          // - Will change to false when Complex quiz is transferred over
+          onChange={() => setIsSimpleQuiz(true)}
         />
         <label htmlFor="complex" className={`cursor-pointer p-2 rounded-md`}>
           Complex (unavailable right now)

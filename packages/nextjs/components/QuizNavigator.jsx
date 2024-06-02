@@ -1,12 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import Image from "next/image";
-import CharacterPage from "./QuizComponents/CharacterPage";
-import EnvironmentForRace from "./QuizComponents/EnvironmentForRace";
-import JobForClass from "./QuizComponents/JobForClass";
-import MajorForBackground from "./QuizComponents/MajorForBackground";
-import Name from "./QuizComponents/Name";
-import SimpleOrComplex from "./QuizComponents/SimpleOrComplex";
+import {
+  CharacterPage,
+  EnvironmentForRace,
+  JobForClass,
+  MajorForBackground,
+  Name,
+  SimpleOrComplex,
+} from "./QuizComponents/QuizExports";
 
 const State = {
   QUESTION0: "question0",
@@ -27,6 +29,7 @@ export default function QuizNavigator({}) {
   const [characterName, setCharacterName] = useState("");
   const [isSimpleQuiz, setIsSimpleQuiz] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [character, setCharacter] = useState({});
 
   const questionComponentMap = {
     [State.QUESTION0]: <SimpleOrComplex isSimpleQuiz={isSimpleQuiz} setIsSimpleQuiz={setIsSimpleQuiz} />,
@@ -47,28 +50,28 @@ export default function QuizNavigator({}) {
         myJob={myJob}
         myMajor={myMajor || "Folk Hero"}
         characterName={characterName}
+        character={character}
+        setCharacter={setCharacter}
       />
     ),
   };
-
 
   function next() {
     switch (currentState) {
       case State.QUESTION0:
         isSimpleQuiz ? setCurrentState(State.QUESTION1) : setCurrentState(State.QUESTION0);
-        setProgress(20);
         break;
       case State.QUESTION1:
         setCurrentState(State.QUESTION2);
-        setProgress(40);
+        setProgress(25);
         break;
       case State.QUESTION2:
         setCurrentState(State.QUESTION3);
-        setProgress(60);
+        setProgress(50);
         break;
       case State.QUESTION3:
         setCurrentState(State.QUESTION4);
-        setProgress(80);
+        setProgress(75);
         break;
       case State.QUESTION4:
         setCurrentState(State.QUESTION5);
@@ -88,16 +91,27 @@ export default function QuizNavigator({}) {
         break;
       case State.QUESTION2:
         setCurrentState(State.QUESTION1);
+        setProgress(0);
         break;
       case State.QUESTION3:
         setCurrentState(State.QUESTION2);
+        setProgress(25);
         break;
       case State.QUESTION4:
         setCurrentState(State.QUESTION3);
+        setProgress(50);
+        break;
+      case State.QUESTION5:
+        setCurrentState(State.QUESTION4);
+        setProgress(75);
         break;
       default:
         break;
     }
+  }
+
+  function save() {
+    console.log(character);
   }
 
   return (
@@ -135,13 +149,13 @@ export default function QuizNavigator({}) {
         <div className="pb-16">{questionComponentMap[currentState]}</div>
 
         <div className="fixed bottom-28 right-28">
-          {currentState !== State.QUESTION1 && currentState !== State.QUESTION5 && currentState !== State.QUESTION0 ? (
+          {currentState !== State.QUESTION1 && currentState !== State.QUESTION0 ? (
             <button
               className="btn bg-black border-0 px-4 py-2 rounded-md text-center text-base mr-2"
               id="back-button"
               onClick={back}
             >
-              Back
+              {currentState === State.QUESTION5 ? "Explore other options?" : "Back"}
             </button>
           ) : null}
           {currentState !== State.GENERATE_CHARACTER &&
@@ -152,7 +166,7 @@ export default function QuizNavigator({}) {
               id="next-button"
               onClick={next}
             >
-              Next
+              {currentState !== State.QUESTION4 ? "Next" : "Finalize Character!"}
             </button>
           ) : null}
 
@@ -163,6 +177,15 @@ export default function QuizNavigator({}) {
               onClick={next}
             >
               Start Quiz
+            </button>
+          ) : null}
+          {currentState === State.QUESTION5 ? (
+            <button
+              className="btn bg-black border-0 px-4 py-2 rounded-md text-center text-base mr-2"
+              id="save-character"
+              onClick={() => save(character)}
+            >
+              Save Character to Wallet!
             </button>
           ) : null}
         </div>

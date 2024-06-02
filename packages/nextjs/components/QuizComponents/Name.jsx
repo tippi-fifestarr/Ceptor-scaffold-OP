@@ -18,7 +18,7 @@ const clericDescriptors = ["Compassionate", "Devout", "Pious", "Righteous", "Cep
 const thiefDescriptors = ["Cunning", "Deceptive", "Nimble", "Stealthy", "Ceptorific"];
 
 export default function Name({ myEnvironment, myJob, characterName, setCharacterName }) {
-  console.log(characterName)
+  console.log(characterName);
   const [nameObject, setNameObject] = useState({
     firstName: "",
     surname: "",
@@ -127,7 +127,7 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
               className="w-3/4 border-2 border-gray-300 rounded-md m-1 p-0.5"
               title="Enter custom first name"
               // default text "Enter custom first name"
-            placeholder="Custom name"
+              placeholder="custom name"
             />
           </div>
         </div>
@@ -208,7 +208,6 @@ export default function Name({ myEnvironment, myJob, characterName, setCharacter
               className="w-3/4 border-2 border-gray-300 rounded-md m-1 p-0.5"
               title="Enter custom surname"
               placeholder="custom surname"
-
             />
           </div>
         </div>

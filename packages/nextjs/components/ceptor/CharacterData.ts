@@ -212,4 +212,5 @@ const defaultThief: Character = {
 };
 
 export { defaultFighter, defaultCleric, defaultMage, defaultThief };
+export type { Character };
 export default characters;
