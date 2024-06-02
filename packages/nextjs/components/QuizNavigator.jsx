@@ -1,7 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { saveCharacter } from "../services/mongo/mongo"; //not sure why this isn't working
+// import { saveCharacter } from "../services/mongo/mongo"; //not sure why this isn't working
 import {
   CharacterPage,
   EnvironmentForRace,
@@ -10,6 +10,138 @@ import {
   Name,
   SimpleOrComplex,
 } from "./QuizComponents/QuizExports";
+import { ethers } from "ethers";
+
+const contractAddress = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9";
+const contractABI = [
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "string",
+        name: "name",
+        type: "string",
+      },
+    ],
+    name: "CharacterCreated",
+    type: "event",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    name: "characters",
+    outputs: [
+      {
+        internalType: "string",
+        name: "name",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "race",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "background",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "alignment",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "level",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "name",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "race",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "background",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "alignment",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "level",
+        type: "uint256",
+      },
+    ],
+    name: "createCharacter",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getCharacterCount",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "characterIndex",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "newName",
+        type: "string",
+      },
+    ],
+    name: "updateCharacterName",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+];
 
 const State = {
   QUESTION0: "question0",
@@ -31,6 +163,31 @@ export default function QuizNavigator({}) {
   const [isSimpleQuiz, setIsSimpleQuiz] = useState(true);
   const [progress, setProgress] = useState(0);
   const [character, setCharacter] = useState({});
+  const [provider, setProvider] = useState(null);
+  const [contractInstance, setContractInstance] = useState(null);
+
+  useEffect(() => {
+    async function init() {
+      // Check if MetaMask is installed
+      if (typeof window.ethereum !== "undefined") {
+        try {
+          // Request account access if needed
+          await window.ethereum.request({ method: "eth_requestAccounts" });
+          // Set up provider
+          const newProvider = new ethers.providers.Web3Provider(window.ethereum);
+          setProvider(newProvider);
+          // Set up contract instance
+          const newContract = new ethers.Contract(contractAddress, contractABI, newProvider.getSigner());
+          setContractInstance(newContract);
+        } catch (error) {
+          console.error("Error connecting to MetaMask:", error);
+        }
+      } else {
+        console.error("MetaMask not found. Please install MetaMask.");
+      }
+    }
+    init();
+  }, []);
 
   const questionComponentMap = {
     [State.QUESTION0]: <SimpleOrComplex isSimpleQuiz={isSimpleQuiz} setIsSimpleQuiz={setIsSimpleQuiz} />,
@@ -111,9 +268,26 @@ export default function QuizNavigator({}) {
     }
   }
 
-  function save(character) {
-    saveCharacter(character);
+  async function save(character) {
+    //saveCharacter(character)
+    if (!contractInstance) {
+      console.error("Contract instance is not available.");
+      return;
+    }
     console.log(character);
+    try {
+      const transaction = await contractInstance.createCharacter(
+        character.name,
+        character.race,
+        character.background,
+        character.alignment,
+        character.level,
+      );
+      await transaction.wait();
+      console.log("Character saved successfully!");
+    } catch (error) {
+      console.error("Error saving character:", error);
+    }
   }
 
   return (
