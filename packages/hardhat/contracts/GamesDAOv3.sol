@@ -29,6 +29,9 @@ contract GamesDAOv3 is AccessControl {
     // mapping(address => bool) public allowedPlayers; // using the oz access control roles instead
 
     enum ProposalType {CHANGE_PRICE, SEND_FUNDS, UPDATE_CATCHPHRASE}
+    // let each sub-dao be able to set the current difficulty and style, for joining and world creation discounts, respectively
+    enum Difficulty {EASY, MEDIUM, HARD, HACKATHON}
+    enum Style {FANTASY, SCI_FI, HORROR}
 
 struct Proposal {
     ProposalType proposalType;
